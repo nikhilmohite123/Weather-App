@@ -158,9 +158,9 @@ accessBtn.addEventListener('click',getLocation);
 
 
 const serchInput=document.querySelector('[serchinput]');
-const btn = document.querySelector('[btn]');
-btn.addEventListener('click',(e)=>{
-   
+
+serchContainer.addEventListener('submit',(e)=>{
+    e.preventDefault();
     let city = serchInput.value;
     if(city==="")
         return;
