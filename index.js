@@ -71,12 +71,12 @@ function getfromSessionStorage() {
 async function fetchUserWeatherInfo(coordinate) {
     let { lat, lon } = coordinate;
     loadingContainer.classList.add('active');
-
+    grantLocation.classList.remove('active');
 
     try {
         const responce = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Api}`);
         const data = await responce.json();
-        grantLocation.classList.remove('active');
+        
         loadingContainer.classList.remove('active');
         userInfo.classList.add('active');
         renderWeatherInfo(data);
@@ -172,15 +172,17 @@ async function fetchSerchWeatherInfo(city){
     loadingContainer.classList.add('active');
     userInfo.classList.remove('active');
     grantLocation.classList.remove('active');
-
+    notFound.classList.remove('active');
   try{
     let responce= await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Api}`);
     if(responce.ok){
+        
         let data = await responce.json();
         serchInput.value = '';
         loadingContainer.classList.remove('active');
         userInfo.classList.add('active');
         renderWeatherInfo(data);
+       
     }
     else{
         loadingContainer.classList.remove('active');
